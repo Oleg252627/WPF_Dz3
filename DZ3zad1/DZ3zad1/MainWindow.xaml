@@ -1,0 +1,269 @@
+﻿<Window x:Class="DZ3zad1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DZ3zad1"
+        
+        xmlns:ms="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="900" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="windows">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+        </Style>
+        <Style TargetType="ms:PackIcon" x:Key="win">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="22"/>
+            <Setter Property="Height" Value="18"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="StackPanel" x:Key="stack_panel">
+            <Setter Property="Background" Value="#f2f2f2"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+        <Style TargetType="ms:PackIcon" x:Key="menu_icon">
+            <Setter Property="Width" Value="22"/>
+            <Setter Property="Height" Value="22"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Brown"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="menu_block">
+            <Setter Property="Foreground" Value="Brown"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="FontFamily" Value="Sitka Small"/>
+        </Style>
+        <Style TargetType="ms:PopupBox" x:Key="menu_popap">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="PlacementMode" Value="BottomAndAlignRightEdges"/>
+            <Setter Property="StaysOpen" Value="True"/>
+            <Setter Property="Foreground" Value="Brown"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="popap_block">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+            <Setter Property="Foreground" Value="Brown"/>
+            <Setter Property="Margin" Value="4, 0"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="popap_box">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Roboto"/>
+            <Setter Property="Margin" Value="5,3"/>
+        </Style>
+        <Style TargetType="Button" x:Key="popap_button">
+            <Setter Property="Background" Value="Brown"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="List_text_block">
+            <Setter Property="Foreground" Value="#FF2756D1"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="Selected_block">
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Foreground" Value="Brown"/>
+            <Setter Property="Padding" Value="4,3"/>
+            <Setter Property="FontFamily" Value="Sitka Small"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="Selected_block2">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Sitka Small"/>
+            <Setter Property="Padding" Value="4,2"/>
+        </Style>
+        <local:Person x:Key="pers" FirstName="" Surname="" Age="" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.15*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.05*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#FF2756D1" MouseLeftButtonDown="Grid_MouseLeftButtonDown" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ms:PackIcon Grid.Column="0" Kind="ViewDashboard" Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff"/>
+            <TextBlock Grid.Column="1" Text="WPF" Foreground="#fff" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18" FontFamily="Century Gothic"/>
+            <Grid Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="minimized" Grid.Column="0" Margin="5,7" Style="{StaticResource windows}" Click="minimized_Click">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ms:PackIcon Grid.Column="0" Kind="WindowMinimize" Style="{StaticResource win}" />
+                    </Grid>
+                </Button>
+                <Button x:Name="maxsimized" Grid.Column="1" Margin="5,7" Style="{StaticResource windows}" Click="maxsimized_Click">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ms:PackIcon Grid.Column="0" Kind="WindowMaximize" Style="{StaticResource win}" />
+                    </Grid>
+                </Button>
+                <Button Grid.Column="2" Margin="5,7" Style="{StaticResource windows}" Click="Button_Click">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ms:PackIcon Grid.Column="0" Kind="WindowClose" Style="{StaticResource win}"/>
+                    </Grid>
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Background="#f2f2f2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Список сотрудников" FontSize="17" VerticalAlignment="Bottom" Margin="5,2" FontFamily="Century Gothic" Foreground="#FF2756D1"/>
+            <StackPanel Grid.Column="1" Style="{StaticResource stack_panel}" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ms:PackIcon Grid.Column="0" Kind="AccountAlert" Style="{StaticResource menu_icon}"/>
+                    <TextBlock Grid.Column="1" Text="Добавить сотрудника" Style="{StaticResource menu_block}"/>
+                    <ms:PopupBox Grid.Column="2" Style="{StaticResource menu_popap}">
+                        <StackPanel Width="200">
+                            <TextBlock Text="Имя:" Style="{StaticResource popap_block}"/>
+                            <TextBox x:Name="Imy" Style="{StaticResource popap_box}"></TextBox>
+                            <TextBlock Text="Фамилия:" Style="{StaticResource popap_block}"/>
+                            <TextBox x:Name="Familiy" Style="{StaticResource popap_box}"></TextBox>
+                            <TextBlock Text="Возраст:" Style="{StaticResource popap_block}"/>
+                            <TextBox x:Name="Vozrost" Style="{StaticResource popap_box}"></TextBox>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="Clearrr" Grid.Column="0" Content="Отмена" Style="{StaticResource popap_button}" Click="Clearrr_Click"/>
+                                <Button x:Name="Add" Grid.Column="1" Content="Добавить" Style="{StaticResource popap_button}" Click="Add_Click"/>
+                            </Grid>
+                        </StackPanel>
+                    </ms:PopupBox>
+                </Grid>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Style="{StaticResource stack_panel}" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ms:PackIcon Grid.Column="0" Kind="Pencil" Style="{StaticResource menu_icon}"/>
+                    <TextBlock Grid.Column="1" Text="Изменить сотрудника" Style="{StaticResource menu_block}"/>
+                    <ms:PopupBox Grid.Column="2" Style="{StaticResource menu_popap}">
+                        <StackPanel Width="200">
+                            <TextBlock Text="Имя:" Style="{StaticResource popap_block}"/>
+                            <TextBox x:Name="Red_first_name" Style="{StaticResource popap_box}" Text="{Binding ElementName=Glob_first_name,Path=Text,UpdateSourceTrigger=Explicit}" TextChanged="Red_first_name_TextChanged"></TextBox>
+                            <TextBlock Text="Фамилия:" Style="{StaticResource popap_block}"/>
+                            <TextBox x:Name="Red_surname" Style="{StaticResource popap_box}" Text="{Binding ElementName=Glob_surname,Path=Text,UpdateSourceTrigger=Explicit}" TextChanged="Red_surname_TextChanged"></TextBox>
+                            <TextBlock Text="Возраст:" Style="{StaticResource popap_block}"/>
+                            <TextBox x:Name="Red_age" Style="{StaticResource popap_box}" Text="{Binding ElementName=Glob_age,Path=Text,UpdateSourceTrigger=Explicit}" TextChanged="Red_age_TextChanged"></TextBox>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="Rename" Grid.Column="0" Grid.ColumnSpan="2" Content="Изменить" Style="{StaticResource popap_button}" Click="Rename_Click"/>
+                            </Grid>
+                        </StackPanel>
+                    </ms:PopupBox>
+                </Grid>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Style="{StaticResource stack_panel}" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ms:PackIcon Grid.Column="0" Kind="Backspace" Style="{StaticResource menu_icon}"/>
+                    <TextBlock Grid.Column="1" Text="Удалить сотрудника" Style="{StaticResource menu_block}"/>
+                    <ms:PopupBox Grid.Column="2" Style="{StaticResource menu_popap}">
+                        <StackPanel Width="200">
+                            <TextBlock Text="Имя:" Style="{StaticResource popap_block}"/>
+                            <TextBox x:Name="Del_first_name" Style="{StaticResource popap_box}" IsReadOnly="True" Text="{Binding ElementName=Glob_first_name,Path=Text,UpdateSourceTrigger=Explicit}"></TextBox>
+                            <TextBlock Text="Фамилия:" Style="{StaticResource popap_block}"/>
+                            <TextBox x:Name="Del_surname" Style="{StaticResource popap_box}" IsReadOnly="True" Text="{Binding ElementName=Glob_surname,Path=Text,UpdateSourceTrigger=Explicit}"></TextBox>
+                            <TextBlock Text="Возраст:" Style="{StaticResource popap_block}"/>
+                            <TextBox x:Name="Del_age" Style="{StaticResource popap_box}" IsReadOnly="True" Text="{Binding ElementName=Glob_age,Path=Text,UpdateSourceTrigger=Explicit}"></TextBox>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="Delete" Grid.Column="0" Grid.ColumnSpan="2" Content="Удалить" Style="{StaticResource popap_button}" Click="Delete_Click"/>
+                            </Grid>
+                        </StackPanel>
+                    </ms:PopupBox>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ListBox Name="list" Margin="5" Background="#f2f2f2" SelectionChanged="list_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="Имя:  " Style="{StaticResource List_text_block}">
+                                <TextBlock Text="{Binding Path=FirstName}" Foreground="Black"/>
+                            </TextBlock>
+                            <TextBlock Text="Фамилия:  " Style="{StaticResource List_text_block}">
+                                <TextBlock Text="{Binding Path=Surname}" Foreground="Black"/>
+                            </TextBlock>
+                            <TextBlock Text="Возрост:  " Style="{StaticResource List_text_block}">
+                                <TextBlock Text="{Binding Path=Age}" Foreground="Black"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="Sotrudnik_panal" Grid.Column="1" Grid.Row="1" Background="#f2f2f2" Visibility="Collapsed">
+                    <TextBlock Text="Имя:" Style="{StaticResource Selected_block}"/>
+                    <TextBlock x:Name="Glob_first_name" Text="{Binding Source={StaticResource pers},Path=FirstName}" Style="{StaticResource Selected_block2}"/>
+                    <TextBlock Text="Фамилия:" Style="{StaticResource Selected_block}"/>
+                    <TextBlock x:Name="Glob_surname" Text="{Binding Source={StaticResource pers},Path=Surname}" Style="{StaticResource Selected_block2}"/>
+                    <TextBlock Text="Возраст:" Style="{StaticResource Selected_block}" FontFamily="Sitka Small"/>
+                    <TextBlock x:Name="Glob_age" Text="{Binding Source={StaticResource pers},Path=Age}" Style="{StaticResource Selected_block2}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="3" Background="#FF2756D1"/>
+    </Grid>
+</Window>
